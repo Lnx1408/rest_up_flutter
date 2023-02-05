@@ -1,5 +1,10 @@
 // ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'menu_principal.dart';
 
 const colorPrimario = Color.fromRGBO(15, 15, 15, 1);
 const colorSecundario = Color.fromRGBO(244, 190, 49, 1);
@@ -17,21 +22,45 @@ class _LoginState extends State<Login> {
   String _email = "";
   String _password = "";
 
-  
   @override
   Widget build(BuildContext context) {
+    ///Metodo para acceder a al menú principal
+    void validarLogin(String email, String password) {
+      if (email == "Grupo9" && password == "123456") {
+        print('Bienvenido: $_email');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MenuPrincipal()),
+        );
+      } else {
+        print('Datos incorrectos');
+      }
+    }
+
+    void salirApp() {
+      print('Usted a salido del sistema');
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+      });
+    }
+
     return Scaffold(
       // backgroundColor: Color.fromARGB(33, 33, 33, 200),
       backgroundColor: const Color.fromARGB(255, 215, 242, 255),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 90.0),
+        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 'Login',
-                style: TextStyle(fontFamily: 'NerkoOne', fontSize: 50.0),
+                style: TextStyle(fontSize: 40.0),
+              ),
+              const SizedBox(
+                width: 160.0,
+                height: 25.0,
+                child: Divider(color: Colors.transparent),
               ),
               const CircleAvatar(
                 radius: 100.0,
@@ -39,35 +68,40 @@ class _LoginState extends State<Login> {
                 backgroundImage:
                     AssetImage('assets/icons/rest_up_logo_black.png'),
               ),
+              const SizedBox(
+                width: 160.0,
+                height: 15.0,
+                child: Divider(color: Colors.transparent),
+              ),
               const Text(
                 'usuario: Grupo9',
-                style: TextStyle(fontFamily: 'NerkoOne', fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
               const Text(
                 'password: 123456',
-                style: TextStyle(fontFamily: 'NerkoOne', fontSize: 20.0),
+                style: TextStyle(fontSize: 15.0),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 160.0,
-                height: 15.0,
-                child: Divider(color: Colors.blueGrey[600]),
+                height: 25.0,
+                child: Divider(color: Colors.transparent),
               ),
               TextField(
                 // autofocus: true,
                 readOnly: false,
                 decoration: InputDecoration(
                     hintText: 'Ingrese su usuario',
-                    labelText: 'usuario',
-                    suffixIcon: const Icon(Icons.alternate_email),
+                    labelText: 'Usuario',
+                    suffixIcon: const Icon(FontAwesomeIcons.solidUser),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0))),
+                        borderRadius: BorderRadius.circular(10.0))),
                 onChanged: (valor) {
                   _email = valor;
-                  print('El Email es $_email');
                 },
               ),
-              const Divider(
+              const SizedBox(
                 height: 15.0,
+                child: Divider(color: Colors.transparent),
               ),
               TextField(
                 enableInteractiveSelection: false,
@@ -75,58 +109,42 @@ class _LoginState extends State<Login> {
                 readOnly: false,
                 decoration: InputDecoration(
                     hintText: 'Ingrese su contraseña',
-                    labelText: 'Password',
-                    suffixIcon: const Icon(Icons.lock_outline),
+                    labelText: 'Contraseña',
+                    suffixIcon: const Icon(FontAwesomeIcons.solidEye),
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0))),
+                        borderRadius: BorderRadius.circular(10.0))),
                 onChanged: (valor) {
                   _password = valor;
-                  print('El Password es $_password');
                 },
               ),
-              const Divider(
-                height: 15.0,
+              const SizedBox(
+                width: 160.0,
+                height: 25.0,
+                child: Divider(color: Colors.transparent),
               ),
               SizedBox(
                 width: double.infinity,
-                child: MaterialButton(
-                  hoverColor: const Color.fromRGBO(3, 169, 244, 1),
+                child: ElevatedButton(
                   // ignore: sort_child_properties_last
                   child: const Text(
-                    'Sing in',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 30.0,
-                        fontFamily: 'NerkoOne'),
+                    'Ingresar',
+                    style: TextStyle(color: Colors.white70, fontSize: 25.0),
                   ),
-                  color: Colors.lightBlueAccent,
                   onPressed: () {
-                    if (_email == "Grupo9" && _password == "123456") {
-                      print('Bienvenido: $_email');
-                    } else {
-                      print('Datos incorrectos');
-                    }
+                    validarLogin(_email, _password);
                   },
                 ),
               ),
-              const Divider(
-                height: 15.0,
-              ),
               SizedBox(
                 width: double.infinity,
-                child: MaterialButton(
-                  hoverColor: const Color.fromRGBO(3, 169, 244, 1),
+                child: ElevatedButton(
                   // ignore: sort_child_properties_last
                   child: const Text(
                     'Salir',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 30.0,
-                        fontFamily: 'NerkoOne'),
+                    style: TextStyle(color: Colors.white70, fontSize: 25.0),
                   ),
-                  color: Colors.lightBlueAccent,
                   onPressed: () {
-                    print('Usted a salido del sistema');
+                    salirApp();
                   },
                 ),
               )
