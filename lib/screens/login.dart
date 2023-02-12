@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 
-import '../Templates/StyleApp.dart';
+import '../Templates/DesignApp.dart';
 import 'menu_principal.dart';
 
 class Login extends StatefulWidget {
