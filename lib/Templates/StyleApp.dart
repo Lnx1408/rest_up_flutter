@@ -20,6 +20,10 @@ class DesignApp extends MaterialApp {
   static String logoDark = "assets/icons/rest_up_logo_black.png";
   static String logoWhite = "assets/icons/rest_up_logo_white.png";
 
+  static String fondoPrincipal = "assets/images/fondo_principal.jpg";
+  static String fondoPrincipal_1 = "assets/images/fondo_principal_1.jpg";
+  static String fondoPrincipal_2 = "assets/images/fondo_principal_2.jpg";
+
   static TextField crearTextField(nombreCampo, hintTexto, bool isPassword,
       IconData icono, Function() myFuncion) {
     return TextField(

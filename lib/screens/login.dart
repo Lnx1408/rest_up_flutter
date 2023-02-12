@@ -44,8 +44,8 @@ class _LoginState extends State<Login> {
         //backgroundColor: const Color.fromARGB(255, 215, 242, 255),
         body: Stack(
           children: [
-            const Image(
-              image: AssetImage("assets/images/fondo_principal_1.jpg"),
+            Image(
+              image: AssetImage(DesignApp.fondoPrincipal),
               fit: BoxFit.fill,
               alignment: Alignment.center,
             ),
