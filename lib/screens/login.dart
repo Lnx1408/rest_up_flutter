@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 
 import '../Templates/StyleApp.dart';
 import 'menu_principal.dart';
@@ -37,6 +38,14 @@ class _LoginState extends State<Login> {
       Future.delayed(const Duration(milliseconds: 1000), () {
         SystemChannels.platform.invokeMethod('SystemNavigator.pop');
       });
+    }
+
+    void usuarioValue() {
+      _email = datoText.middleVar;
+    }
+
+    void passwordValue() {
+      _password = datoText.middleVar;
     }
 
     return Scaffold(
@@ -89,54 +98,22 @@ class _LoginState extends State<Login> {
                       height: 25.0,
                       child: Divider(color: DesignApp.colorTransparente),
                     ),
-                    TextField(
-                      // autofocus: true,
-                      readOnly: false,
-                      cursorColor: DesignApp.colorPrimario,
-                      decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(15),
-                          hintText: 'Ingrese su usuario',
-                          labelText: 'Usuario',
-                          fillColor: DesignApp.colorAcent,
-                          filled: true,
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                              gapPadding: 0),
-                          suffixIcon: const Icon(FontAwesomeIcons.solidUser),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0))),
-                      onChanged: (valor) {
-                        _email = valor;
-                      },
-                    ),
+                    DesignApp.crearTextField(
+                        "Usuario",
+                        'Ingrese su usuario',
+                        false,
+                        FontAwesomeIcons.solidUser,
+                        () => usuarioValue()),
                     SizedBox(
                       height: 15.0,
                       child: Divider(color: DesignApp.colorTransparente),
                     ),
-                    TextField(
-                      enableInteractiveSelection: false,
-                      obscureText: true,
-                      readOnly: false,
-                      cursorColor: DesignApp.colorTerciario,
-                      decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(15),
-                          fillColor: DesignApp.colorAcent,
-                          filled: true,
-                          focusColor: DesignApp.colorPrimario,
-                          hintText: 'Ingrese su contraseña',
-                          labelText: 'Contraseña',
-                          labelStyle: TextStyle(
-                              backgroundColor: DesignApp.colorTransparente),
-                          suffixIcon: const Icon(FontAwesomeIcons.solidEye),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.0),
-                              gapPadding: 0),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0))),
-                      onChanged: (valor) {
-                        _password = valor;
-                      },
-                    ),
+                    DesignApp.crearTextField(
+                        "Contraseña",
+                        'Ingrese su contraseña',
+                        true,
+                        FontAwesomeIcons.solidEye,
+                        () => passwordValue()),
                     SizedBox(
                       width: 160.0,
                       height: 25.0,
