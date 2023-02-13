@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.title});
-
   final String title;
 
   @override
