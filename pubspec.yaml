@@ -24,6 +24,13 @@ flutter:
   uses-material-design: true
   assets: 
     - assets/
+  fonts:
+    - family: Italianno
+      fonts:
+        - asset: assets/fonts/Italianno-Regular.ttf
+    - family: Italiana
+      fonts:
+        - asset: assets/fonts/Italiana-Regular.ttf
 
 flutter_icons:
   image_path: 'assets/icons/rest_up_logo_yellow.png'
