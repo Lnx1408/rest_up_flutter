@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
-import 'login.dart';
+import 'UsuarioLogin.dart';
 
 void main() => runApp(const MenuPrincipal());
 
@@ -39,10 +39,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
       title: 'Menu principal',
       home: Scaffold(
         backgroundColor: DesignApp.colorPrimario,
-        appBar: AppBar(
-          title: const Text('Bienvenido a RestUp'),
-          backgroundColor: DesignApp.colorTerciario,
-        ),
+        appBar: DesignApp.appBarBasic('Bienvenido a RestUp'),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(25.0),

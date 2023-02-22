@@ -1,5 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:rest_up_flutter/screens/login.dart';
+import 'package:rest_up_flutter/screens/splas_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(debugShowCheckedModeBanner: false, home: Login());
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "RestUp",
+      home: Splash(),
+    );
   }
 }

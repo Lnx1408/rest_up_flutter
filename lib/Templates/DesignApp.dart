@@ -11,7 +11,7 @@ class DesignApp extends MaterialApp {
   static Color colorPrimario = const Color.fromRGBO(15, 15, 15, 1);
   static Color colorSecundario = const Color.fromRGBO(244, 190, 49, 1);
   static Color colorTerciario = const Color.fromRGBO(25, 25, 25, 1);
-  static Color colorAcent = const Color.fromRGBO(229, 241, 251, 1);
+  static Color colorAcent = const Color.fromRGBO(243, 235, 235, 1);
   static Color colorTransparente = const Color(0x00000000);
 
   /// Rutas de recursos
@@ -23,6 +23,8 @@ class DesignApp extends MaterialApp {
   static String fondoPrincipal = "assets/images/fondo_principal.jpg";
   static String fondoPrincipal_1 = "assets/images/fondo_principal_1.jpg";
   static String fondoPrincipal_2 = "assets/images/fondo_principal_2.jpg";
+  static String fondoRegistroUsuario = "assets/images/fondo_registro.png";
+  static String splash = "assets/images/splash.png";
 
   static TextField crearTextField(nombreCampo, hintTexto, bool isPassword,
       IconData icono, Function() myFuncion) {
@@ -64,6 +66,13 @@ class DesignApp extends MaterialApp {
       onPressed: () {
         myFuncion();
       },
+    );
+  }
+
+  static AppBar appBarBasic(String nombre) {
+    return AppBar(
+      title: Text(nombre),
+      backgroundColor: DesignApp.colorTerciario,
     );
   }
 }
