@@ -1,0 +1,37 @@
+<data>
+    <menu>
+        <plato>Pollo a la plancha</plato>
+        <precio>4.50</precio>
+        <imagen>https://unareceta.com/wp-content/uploads/2016/08/receta-de-pollo-asado.png</imagen>
+    </menu>
+    <menu>
+        <plato>Camarones al ajillo</plato>
+        <precio>5.50</precio>
+        <imagen>https://www.analitica.com/wp-content/uploads/2016/02/Disfruta-de-unos-deliciosos-camarones-al-ajillo.jpg</imagen>
+    </menu>
+    <menu>
+        <plato>Ceviche mixto</plato>
+        <precio>4.50</precio>
+        <imagen>https://www.framedcooks.com/wp-content/uploads/2020/06/2-easy-classic-ceviche.jpg</imagen>
+    </menu>
+    <menu>
+        <plato>Pollo al horno</plato>
+        <precio>29.75</precio>
+        <imagen>https://puertoviejony.com/2/wp-content/uploads/2016/02/pollo-entero-al-horno.jpg</imagen>
+    </menu>
+    <menu>
+        <plato>Ensalada Caprese</plato>
+        <precio>5.25</precio>
+        <imagen>https://okdiario.com/img/2016/11/26/receta-de-ensalada-caprese.jpg</imagen>
+    </menu>
+    <menu>
+        <plato>Filete de pescado frito</plato>
+        <precio>3.75</precio>
+        <imagen>https://i.pinimg.com/originals/f9/7e/59/f97e591b372aa36935eff3c92d88aa43.jpg</imagen>
+    </menu>
+    <menu>
+        <plato>Parrillada</plato>
+        <precio>13.50</precio>
+        <imagen>https://www.wallpaperup.com/uploads/wallpapers/2015/06/14/722641/f006f5e939402192938706820e6bff64.jpg</imagen>
+    </menu>
+</data>

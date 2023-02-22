@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/screens/UsuarioRegistro.dart';
+import 'package:rest_up_flutter/screens/menu_comida.dart';
 
 import '../Templates/DesignApp.dart';
-import 'menu_principal.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
         print('Bienvenido: $_email');
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const MenuPrincipal()),
+          MaterialPageRoute(builder: (context) => const menuComidas()),
         );
       } else {
         print('Datos incorrectos');
