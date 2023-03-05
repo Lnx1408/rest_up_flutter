@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/screens/UsuarioRegistro.dart';
-import 'package:rest_up_flutter/screens/menu_comida.dart';
+import 'package:rest_up_flutter/screens/menu_principal.dart';
 
 import '../Templates/DesignApp.dart';
 
@@ -23,11 +23,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     void validarLogin(String email, String password) {
-      if (email == "Grupo9" && password == "123456") {
+      if (email == "" && password == "") {
         print('Bienvenido: $_email');
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const menuComidas()),
+          MaterialPageRoute(builder: (context) => const MenuPrincipal()),
         );
       } else {
         print('Datos incorrectos');
@@ -47,6 +47,12 @@ class _LoginState extends State<Login> {
 
     void passwordValue() {
       _password = datoText.middleVar;
+    }
+
+    void isPasswordField() {
+      setState(() {
+        datoText.isPassword = !datoText.isPassword;
+      });
     }
 
     return Scaffold(
@@ -107,12 +113,14 @@ class _LoginState extends State<Login> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 5.0),
-                child: DesignApp.crearTextField(
-                    "Contraseña",
-                    'Ingrese su contraseña',
-                    true,
-                    FontAwesomeIcons.solidEye,
-                    () => passwordValue()),
+                child: DesignApp.crearTextFieldPass(
+                  "Contraseña",
+                  'Ingrese su contraseña',
+                  true,
+                  FontAwesomeIcons.solidEye,
+                  () => passwordValue(),
+                  () => isPasswordField(),
+                ),
               ),
               const SizedBox(height: 16.0),
               Padding(
@@ -120,6 +128,7 @@ class _LoginState extends State<Login> {
                 child: DesignApp.crearBoton(
                     "Ingresar", () => validarLogin(_email, _password)),
               ),
+              const SizedBox(height: 10.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DesignApp.crearBoton("Salir", () => salirApp()),

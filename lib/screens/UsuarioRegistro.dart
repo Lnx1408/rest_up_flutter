@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/screens/UsuarioLogin.dart';
+import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 
 import '../Templates/DesignApp.dart';
 
@@ -17,9 +18,21 @@ class _UsuarioRegistroState extends State<UsuarioRegistro> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
   String _email = '';
+  String _password = '';
+  
 
   @override
   Widget build(BuildContext context) {
+    void passwordValue() {
+      _password = datoText.middleVar;
+    }
+
+    void isPasswordField() {
+      setState(() {
+        datoText.isPassword = !datoText.isPassword;
+      });
+    }
+
     return Scaffold(
       backgroundColor: DesignApp.colorTerciario,
       body: Container(
@@ -66,19 +79,23 @@ class _UsuarioRegistroState extends State<UsuarioRegistro> {
                   DesignApp.crearTextField("Nombre", "Ingrese su nombre", false,
                       FontAwesomeIcons.solidUser, () => null),
                   const SizedBox(height: 16),
-                  DesignApp.crearTextField(
-                      "Contraseña",
-                      "Ingrese su contraseña",
-                      true,
-                      FontAwesomeIcons.solidEyeSlash,
-                      () => null),
+                  DesignApp.crearTextFieldPass(
+                    "Contraseña",
+                    'Ingrese su contraseña',
+                    true,
+                    FontAwesomeIcons.solidEye,
+                    () => passwordValue(),
+                    () => isPasswordField(),
+                  ),
                   const SizedBox(height: 16),
-                  DesignApp.crearTextField(
-                      "Confirmar contraseña",
-                      "Ingrese su contraseña",
-                      true,
-                      FontAwesomeIcons.solidEyeSlash,
-                      () => null),
+                  DesignApp.crearTextFieldPass(
+                    "Contraseña",
+                    'Ingrese su contraseña',
+                    true,
+                    FontAwesomeIcons.solidEye,
+                    () => passwordValue(),
+                    () => isPasswordField(),
+                  ),
                   const SizedBox(height: 16),
                   DesignApp.crearBoton("Registrarse", () => null),
                   Row(

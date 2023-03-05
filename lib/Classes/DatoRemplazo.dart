@@ -2,4 +2,5 @@
 
 class datoText {
   static String middleVar = "";
+  static bool isPassword = true;
 }
