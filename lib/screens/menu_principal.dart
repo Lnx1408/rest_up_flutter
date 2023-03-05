@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
+import 'package:rest_up_flutter/screens/promociones.dart';
 import 'UsuarioLogin.dart';
 
 void main() => runApp(const MenuPrincipal());
@@ -16,50 +16,40 @@ class MenuPrincipal extends StatefulWidget {
   State<StatefulWidget> createState() => _MenuPrincipalState();
 }
 
+void volverLogin(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const Login()));
+}
+
 class _MenuPrincipalState extends State<MenuPrincipal> {
-  void volverLogin(BuildContext context) {
+  void navigateToPromociones() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Login()));
-  }
-
-  void campo1() {
-    String valor = datoText.middleVar;
-    print('presiono el campo1 $valor sd');
-  }
-
-  void campo2() {
-    String valor = datoText.middleVar;
-    print('presiono el campo2 $valor xd');
+      context,
+      MaterialPageRoute(builder: (context) => const Promociones()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Menu principal',
-      home: Scaffold(
-        backgroundColor: DesignApp.colorPrimario,
-        appBar: DesignApp.appBarBasic('Bienvenido a RestUp'),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(25.0),
+    return Scaffold(
+      backgroundColor: DesignApp.colorPrimario,
+      appBar: DesignApp.appBarBasic('Bienvenido a RestUp'),
+      drawer: panelNavegacion(context),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10),
+          child: SingleChildScrollView(
             child: Column(
-              verticalDirection: VerticalDirection.down,
-              children: [
-                DesignApp.crearTextField("Nuevo Text 1", "Este texto 2", false,
-                    FontAwesomeIcons.solidCalendar, () => campo1()),
-                SizedBox(
-                  height: 15.0,
-                  child: Divider(color: DesignApp.colorTransparente),
-                ),
-                DesignApp.crearTextField("Nuevo Text 2", "Este texto 2", true,
-                    FontAwesomeIcons.solidBell, () => campo2()),
-                SizedBox(
-                  height: 15.0,
-                  child: Divider(color: DesignApp.colorTransparente),
-                ),
-                DesignApp.crearBoton(
-                    "Cerrar Sesion", () => volverLogin(context))
+              children: <Widget>[
+                createCardButton(context, "Menú", DesignApp.imgMenuComidas,
+                    () => navigateToPromociones()),
+                createCardButton(
+                    context,
+                    "Promociones",
+                    DesignApp.imgMenuPromociones,
+                    () => navigateToPromociones()),
+                createCardButton(context, "Reservas", DesignApp.imgMenuReservas,
+                    () => navigateToPromociones()),
               ],
             ),
           ),
@@ -67,4 +57,119 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
       ),
     );
   }
+
+  GestureDetector createCardButton(BuildContext context, String texto,
+      String imagen, Function() navigateTo) {
+    return GestureDetector(
+      onTap: () {
+        navigateTo();
+      },
+      child: Card(
+        color: DesignApp.colorSecundario,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20.0),
+              ),
+              child: Image.asset(
+                imagen,
+                height: 125,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    texto,
+                    style: TextStyle(
+                      color: DesignApp.colorPrimario,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Drawer panelNavegacion(context) {
+  var drawerHeader = UserAccountsDrawerHeader(
+    accountName: const Text(
+      "Usuario",
+    ),
+    accountEmail: const Text(
+      "Something@xd.com",
+    ),
+    currentAccountPicture: CircleAvatar(
+      backgroundColor: DesignApp.colorPrimario,
+      child: const FlutterLogo(size: 42.0),
+    ),
+  );
+  final drawerItems = ListView(
+    children: [
+      drawerHeader,
+      ListTile(
+        title: const Text(
+          "FeedBack",
+        ),
+        leading: const Icon(FontAwesomeIcons.solidCommentDots),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+      ListTile(
+        title: const Text(
+          "Encuéntranos",
+        ),
+        leading: const Icon(FontAwesomeIcons.locationDot),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+      ListTile(
+        title: const Text(
+          "Acerca de",
+        ),
+        leading: const Icon(FontAwesomeIcons.info),
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
+      const SizedBox(
+        child: Divider(
+          color: Colors.white,
+          height: 2.0,
+        ),
+      ),
+      ListTile(
+        title: const Text(
+          "Cerrar Sesion",
+        ),
+        leading: const Icon(FontAwesomeIcons.rightToBracket),
+        onTap: () {
+          volverLogin(context);
+        },
+      ),
+    ],
+  );
+  return Drawer(
+    backgroundColor: DesignApp.colorTerciario,
+    child: drawerItems,
+  );
 }
