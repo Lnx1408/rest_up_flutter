@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
+import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
+import 'package:rest_up_flutter/screens/promociones_consulta.dart';
 
 class Promociones extends StatefulWidget {
   const Promociones({super.key});
@@ -10,8 +12,32 @@ class Promociones extends StatefulWidget {
 }
 
 class _PromocionesState extends State<Promociones> {
+  String _nombre = "", _dias = "", _restricciones = "", _imagen = "";
   @override
   Widget build(BuildContext context) {
+    void nombrePromoValue() {
+      _nombre = datoText.middleVar;
+    }
+
+    void navigateToPromocionesConsulta() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const PromocionConsulta()),
+      );
+    }
+
+    void diasPromoValue() {
+      _dias = datoText.middleVar;
+    }
+
+    void restriccionPromoValue() {
+      _restricciones = datoText.middleVar;
+    }
+
+    void imagenPromoValue() {
+      _imagen = datoText.middleVar;
+    }
+
     return Scaffold(
       appBar: DesignApp.appBarBasic("Promociones"),
       body: SingleChildScrollView(
@@ -49,30 +75,42 @@ class _PromocionesState extends State<Promociones> {
                   "Ingrese el nombre de la promoción",
                   false,
                   FontAwesomeIcons.tag,
-                  () => null),
-              const SizedBox(
-                height: 10.0,
-              ),
-              DesignApp.crearTextField("Días", "Días que aplica la promoción",
-                  false, FontAwesomeIcons.calendarDay, () => null),
+                  () => nombrePromoValue()),
               const SizedBox(
                 height: 10.0,
               ),
               DesignApp.crearTextField(
-                  "Restricciones",
-                  "Restricciones de la promoción",
-                  false,
-                  FontAwesomeIcons.triangleExclamation,
-                  () => null),
+                "Días",
+                "Días que aplica la promoción",
+                false,
+                FontAwesomeIcons.calendarDay,
+                () => diasPromoValue(),
+              ),
               const SizedBox(
                 height: 10.0,
               ),
-              DesignApp.crearTextField("Imagen", "Imagen de internet", false,
-                  FontAwesomeIcons.solidFileImage, () => null),
+              DesignApp.crearTextField(
+                "Restricciones",
+                "Restricciones de la promoción",
+                false,
+                FontAwesomeIcons.triangleExclamation,
+                () => restriccionPromoValue(),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              DesignApp.crearTextField(
+                "Imagen",
+                "Imagen de internet",
+                false,
+                FontAwesomeIcons.solidFileImage,
+                () => imagenPromoValue(),
+              ),
               const SizedBox(
                 height: 15.0,
               ),
-              DesignApp.crearBoton("Registrar promoción", () => null),
+              DesignApp.crearBoton(
+                  "Registrar promoción", () => navigateToPromocionesConsulta()),
             ],
           ),
         ),
