@@ -124,7 +124,7 @@ Drawer panelNavegacion(context) {
   final drawerItems = ListView(
     children: [
       drawerHeader,
-      ListTile(
+      /*ListTile(
         title: const Text(
           "FeedBack",
         ),
@@ -132,7 +132,7 @@ Drawer panelNavegacion(context) {
         onTap: () {
           Navigator.pop(context);
         },
-      ),
+      ),*/
       ListTile(
         title: const Text(
           "Encuéntranos",

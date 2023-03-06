@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1036702358315",
+    "project_id": "restup-379016",
+    "storage_bucket": "restup-379016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036702358315:android:dbb3476f23c5bf07c2c36e",
+        "android_client_info": {
+          "package_name": "com.example.rest_up_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036702358315-ijd52nhpa6etch34luk22pvif1j14j38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPYf-QpME-H9p3672S-0yR_RzPxaUi6CE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036702358315-ijd52nhpa6etch34luk22pvif1j14j38.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1036702358315-a9cu4i7r655n9a40dfmql6sln120jh37.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.restUpFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
