@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
 import 'package:rest_up_flutter/screens/promociones.dart';
+import 'package:rest_up_flutter/screens/ubicacion_gps.dart';
 import 'UsuarioLogin.dart';
+import 'integrantes.dart';
 
 void main() => runApp(const MenuPrincipal());
 
@@ -19,6 +21,18 @@ class MenuPrincipal extends StatefulWidget {
 void volverLogin(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => const Login()));
+}
+
+void navigateToIntegrantes(BuildContext context) {
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => const Integrante()));
+}
+
+void navigateToUbicacionGPS(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const UbicacionRestaurante()),
+  );
 }
 
 class _MenuPrincipalState extends State<MenuPrincipal> {
@@ -139,7 +153,7 @@ Drawer panelNavegacion(context) {
         ),
         leading: const Icon(FontAwesomeIcons.locationDot),
         onTap: () {
-          Navigator.pop(context);
+          navigateToUbicacionGPS(context);
         },
       ),
       ListTile(
@@ -148,7 +162,7 @@ Drawer panelNavegacion(context) {
         ),
         leading: const Icon(FontAwesomeIcons.info),
         onTap: () {
-          Navigator.pop(context);
+          navigateToIntegrantes(context);
         },
       ),
       const SizedBox(
