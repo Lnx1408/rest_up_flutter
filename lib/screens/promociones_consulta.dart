@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:rest_up_flutter/services/servicesPromociones.dart';
+import 'package:rest_up_flutter/services/services_promociones.dart';
 
 import '../Templates/DesignApp.dart';
 

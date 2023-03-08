@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/screens/promociones_consulta.dart';
-import 'package:rest_up_flutter/services/servicesPromociones.dart';
+import 'package:rest_up_flutter/services/services_promociones.dart';
 
 class Promociones extends StatefulWidget {
   const Promociones({super.key});
