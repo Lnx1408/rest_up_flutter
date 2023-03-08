@@ -5,22 +5,11 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 Future<List> getDatosPromociones() async {
   List datos = [];
   CollectionReference collectionReferencedatos = db.collection('Promocion');
-  QuerySnapshot querymenu = await collectionReferencedatos.get();
-  //QuerySnapshot querymenu = await db.collection('Promocion').get();
-  // ignore: avoid_function_literals_in_foreach_calls
-  querymenu.docs.forEach((documento) {
-    /*for (var doc in querymenu.docs) {
-    final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    final elements = {
-      "nombre": data['Nombre'],
-      "dias": data['Dias'],
-      "Restricciones": data['Restricciones'],
-      "imagen": data['Imagen'],
-      "uid": doc.id,
-    };
-    datos.add(elements);*/
+  QuerySnapshot queryPromocion = await collectionReferencedatos.get();
+
+  for (var documento in queryPromocion.docs) {
     datos.add(documento.data());
-  });
+  }
   return datos;
 }
 
