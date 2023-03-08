@@ -14,16 +14,22 @@ Future<List> getDatosPromociones() async {
 }
 
 //guardar en base de datos
-Future<void> addMenu(String name) async {
-  await db.collection("menu").add({"descripcion": name});
+Future<void> addPromocion(
+    String nombre, String dias, String restricciones, String imagen) async {
+  await db.collection("Promocion").add({
+    "Nombre": nombre,
+    "Dias": dias,
+    "Restricciones": restricciones,
+    "Imagen": imagen
+  });
 }
 
 //actualizar
 Future<void> actualizarM(String uid, String descrip) async {
-  await db.collection("menu").doc(uid).set({"descripcion": descrip});
+  await db.collection("Promocion").doc(uid).set({"descripcion": descrip});
 }
 
 //eliminar desde firebase
 Future<void> eliminerM(String id) async {
-  await db.collection("menu").doc(id).delete();
+  await db.collection("Promocion").doc(id).delete();
 }
