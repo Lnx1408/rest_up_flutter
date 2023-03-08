@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/screens/promociones_consulta.dart';
+import 'package:rest_up_flutter/services/servicesPromociones.dart';
 
 class Promociones extends StatefulWidget {
   const Promociones({super.key});
@@ -22,6 +23,14 @@ class _PromocionesState extends State<Promociones> {
     }
 
     void navigateToPromocionesConsulta() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const PromocionConsulta()),
+      );
+    }
+
+    void registrarPromociones() {
+      addPromocion(_nombre, _dias, _restricciones, _imagen);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const PromocionConsulta()),
@@ -112,7 +121,12 @@ class _PromocionesState extends State<Promociones> {
                 height: 15.0,
               ),
               DesignApp.crearBoton(
-                  "Registrar promoción", () => navigateToPromocionesConsulta()),
+                  "Registrar promoción", () => registrarPromociones()),
+              const SizedBox(
+                height: 10.0,
+              ),
+              DesignApp.crearBoton(
+                  "Ver promociones", () => navigateToPromocionesConsulta()),
             ],
           ),
         ),
