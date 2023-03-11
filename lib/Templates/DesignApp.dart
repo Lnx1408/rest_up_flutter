@@ -69,6 +69,46 @@ class DesignApp extends MaterialApp {
     );
   }
 
+  static TextField crearEditableTextField(
+      nombreCampo,
+      hintTexto,
+      TextEditingController controladorText,
+      IconData icono,
+      Function() myFuncion) {
+    return TextField(
+      cursorColor: DesignApp.colorSecundario,
+      controller: controladorText,
+      enableInteractiveSelection: false,
+      readOnly: false,
+      decoration: InputDecoration(
+        suffixIconColor: colorSecundario,
+        contentPadding: const EdgeInsets.all(15),
+        fillColor: const Color.fromRGBO(1, 0, 0, 0.75),
+        filled: true,
+        focusColor: DesignApp.colorPrimario,
+        hintText: hintTexto,
+        labelText: nombreCampo,
+        labelStyle: TextStyle(
+          backgroundColor: colorTransparente,
+          color: colorSecundario,
+        ),
+        suffixIcon: Icon(icono),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          gapPadding: 5,
+          borderSide: BorderSide(color: colorSecundario),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      onChanged: (String valorCampoF) {
+        datoText.middleVar = valorCampoF;
+        myFuncion();
+      },
+    );
+  }
+
   static TextField crearTextFieldPass(nombreCampo, hintTexto, bool isPassword,
       IconData icono, Function() myFuncion, Function() isPasswordField) {
     return TextField(
