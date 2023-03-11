@@ -4,3 +4,7 @@ class datoText {
   static String middleVar = "";
   static bool isPassword = true;
 }
+
+class datoList {
+  static List usuarioActual = [];
+}
