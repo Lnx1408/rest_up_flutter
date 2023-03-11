@@ -53,7 +53,7 @@ class _PromocionActualizarState extends State<PromocionActualizar> {
       navigateToPromocionesConsulta();
       return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
-          "Promoción editada con éxito",
+          "Promoción editada con éxito.",
           style: TextStyle(color: DesignApp.colorSecundario),
         ),
         backgroundColor: DesignApp.colorTerciario,
