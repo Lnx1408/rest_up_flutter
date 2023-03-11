@@ -2,17 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
 import 'package:rest_up_flutter/screens/promociones.dart';
 import 'package:rest_up_flutter/screens/ubicacion_gps.dart';
 import 'UsuarioLogin.dart';
 import 'integrantes.dart';
 
-void main() => runApp(const MenuPrincipal());
-
 // ignore: must_be_immutable
 class MenuPrincipal extends StatefulWidget {
-  const MenuPrincipal({super.key});
+  MenuPrincipal({super.key, required this.usuarioDatos});
+  final List usuarioDatos;
+  String nombre = "", correo = "", imagen = "";
 
   @override
   State<StatefulWidget> createState() => _MenuPrincipalState();
@@ -45,10 +46,18 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    datoList.usuarioActual = widget.usuarioDatos;
+    for (var datoUsuario in datoList.usuarioActual) {
+      widget.nombre = datoUsuario["NombreUsuario"];
+      widget.correo = datoUsuario["Email"];
+      widget.imagen = datoUsuario["Imagen"];
+    }
+
     return Scaffold(
       backgroundColor: DesignApp.colorPrimario,
       appBar: DesignApp.appBarBasic('Bienvenido a RestUp'),
-      drawer: panelNavegacion(context),
+      drawer:
+          panelNavegacion(context, widget.nombre, widget.correo, widget.imagen),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10),
@@ -122,31 +131,36 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
   }
 }
 
-Drawer panelNavegacion(context) {
+Drawer panelNavegacion(context, usuario, mail, imagen) {
   var drawerHeader = UserAccountsDrawerHeader(
-    accountName: const Text(
-      "Usuario",
+    decoration: BoxDecoration(
+      color: DesignApp.colorPrimario,
+      image: DecorationImage(
+        fit: BoxFit.fill,
+        image: NetworkImage(DesignApp.fondoMenuDesplegable),
+      ),
     ),
-    accountEmail: const Text(
-      "Something@xd.com",
+    accountName: Text(
+      usuario,
+      style: TextStyle(
+        color: DesignApp.colorSecundario,
+        fontSize: 18,
+      ),
     ),
-    currentAccountPicture: CircleAvatar(
-      backgroundColor: DesignApp.colorPrimario,
-      child: const FlutterLogo(size: 42.0),
+    accountEmail: Text(
+      mail,
+    ),
+    currentAccountPicture: DecoratedBox(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(imagen),
+          ),
+          borderRadius: BorderRadius.circular(100)),
     ),
   );
   final drawerItems = ListView(
     children: [
       drawerHeader,
-      /*ListTile(
-        title: const Text(
-          "FeedBack",
-        ),
-        leading: const Icon(FontAwesomeIcons.solidCommentDots),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),*/
       ListTile(
         title: const Text(
           "Encuéntranos",

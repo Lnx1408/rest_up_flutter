@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, file_names
+// ignore_for_file: avoid_print, file_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +8,7 @@ import 'package:rest_up_flutter/screens/UsuarioRegistro.dart';
 import 'package:rest_up_flutter/screens/menu_principal.dart';
 
 import '../Templates/DesignApp.dart';
+import '../services/services_usuario.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -17,17 +18,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String _email = "";
+  String _nombreUsuario = "";
   String _password = "";
 
   @override
   Widget build(BuildContext context) {
-    void validarLogin(String email, String password) {
-      if (email == "" && password == "") {
-        print('Bienvenido: $_email');
+    Future<void> validarLogin(String usuario, String password) async {
+      bool usuarioExiste = await isUser(usuario, password);
+      if (usuarioExiste) {
+        List usuarioDato = await getDatoUser(_nombreUsuario);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const MenuPrincipal()),
+          MaterialPageRoute(
+              builder: (context) => MenuPrincipal(usuarioDatos: usuarioDato)),
         );
       } else {
         print('Datos incorrectos');
@@ -42,7 +45,7 @@ class _LoginState extends State<Login> {
     }
 
     void usuarioValue() {
-      _email = datoText.middleVar;
+      _nombreUsuario = datoText.middleVar;
     }
 
     void passwordValue() {
@@ -126,7 +129,7 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: DesignApp.crearBoton(
-                    "Ingresar", () => validarLogin(_email, _password)),
+                    "Ingresar", () => validarLogin(_nombreUsuario, _password)),
               ),
               const SizedBox(height: 10.0),
               Padding(
