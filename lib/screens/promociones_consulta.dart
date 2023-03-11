@@ -77,6 +77,14 @@ class _PromocionConsultaState extends State<PromocionConsulta> {
                       ),
                       TextButton(
                         onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              "Promoción eliminada con éxito",
+                              style:
+                                  TextStyle(color: DesignApp.colorSecundario),
+                            ),
+                            backgroundColor: DesignApp.colorTerciario,
+                          ));
                           return Navigator.pop(context, true);
                         },
                         child: const Text('Si, estoy seguro'),

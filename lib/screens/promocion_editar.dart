@@ -46,10 +46,18 @@ class _PromocionActualizarState extends State<PromocionActualizar> {
       );
     }
 
-    void modificarPromociones() {
+    ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+        modificarPromociones() {
       updatePromocion(widget.uid, widget.nombre, widget.dias,
           widget.restricciones, widget.imagen);
       navigateToPromocionesConsulta();
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "Promoción editada con éxito",
+          style: TextStyle(color: DesignApp.colorSecundario),
+        ),
+        backgroundColor: DesignApp.colorTerciario,
+      ));
     }
 
     void diasPromoValue() {

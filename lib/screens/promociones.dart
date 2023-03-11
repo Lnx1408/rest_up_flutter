@@ -29,12 +29,22 @@ class _PromocionesState extends State<Promociones> {
       );
     }
 
-    void registrarPromociones() {
+    ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+        registrarPromociones() {
       addPromocion(_nombre, _dias, _restricciones, _imagen);
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const PromocionConsulta()),
       );
+
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          "Promoción registrada con éxito",
+          style: TextStyle(color: DesignApp.colorSecundario),
+        ),
+        backgroundColor: DesignApp.colorTerciario,
+      ));
     }
 
     void diasPromoValue() {
