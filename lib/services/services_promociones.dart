@@ -4,11 +4,19 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 
 Future<List> getDatosPromociones() async {
   List datos = [];
-  CollectionReference collectionReferencedatos = db.collection('Promocion');
-  QuerySnapshot queryPromocion = await collectionReferencedatos.get();
+
+  QuerySnapshot queryPromocion = await db.collection('Promocion').get();
 
   for (var documento in queryPromocion.docs) {
-    datos.add(documento.data());
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final elements = {
+      "Nombre": data['Nombre'],
+      "Dias": data['Dias'],
+      "Restricciones": data['Restricciones'],
+      "Imagen": data['Imagen'],
+      "uid": documento.id,
+    };
+    datos.add(elements);
   }
   return datos;
 }
@@ -25,11 +33,17 @@ Future<void> addPromocion(
 }
 
 //actualizar
-Future<void> actualizarM(String uid, String descrip) async {
-  await db.collection("Promocion").doc(uid).set({"descripcion": descrip});
+Future<void> updatePromocion(String uid, String nombre, String dias,
+    String restricciones, String imagen) async {
+  await db.collection("Promocion").doc(uid).set({
+    "Nombre": nombre,
+    "Dias": dias,
+    "Restricciones": restricciones,
+    "Imagen": imagen,
+  });
 }
 
 //eliminar desde firebase
-Future<void> eliminerM(String id) async {
+Future<void> deletePromocion(String id) async {
   await db.collection("Promocion").doc(id).delete();
 }
