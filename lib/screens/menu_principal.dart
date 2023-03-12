@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
 import 'package:rest_up_flutter/screens/menu_restaurante_read.dart';
-import 'package:rest_up_flutter/screens/promociones.dart';
+import 'package:rest_up_flutter/screens/promociones_consulta.dart';
 import 'package:rest_up_flutter/screens/reserva_read.dart';
 import 'package:rest_up_flutter/screens/ubicacion_gps.dart';
 import 'UsuarioLogin.dart';
@@ -42,7 +42,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
   void navigateToPromociones() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const Promociones()),
+      MaterialPageRoute(builder: (context) => const PromocionConsulta()),
     );
   }
 

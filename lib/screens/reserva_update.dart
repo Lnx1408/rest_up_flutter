@@ -11,10 +11,11 @@ class ReservaUpdate extends StatefulWidget {
   ReservaUpdate(
       {super.key,
       required this.uid,
+      required this.usuario,
       required this.fecha,
       required this.nPersonas});
 
-  String uid, fecha, nPersonas;
+  String uid, usuario, fecha, nPersonas;
 
   @override
   State<ReservaUpdate> createState() => _ReservaUpdateState();
@@ -45,8 +46,8 @@ class _ReservaUpdateState extends State<ReservaUpdate> {
     ScaffoldFeatureController<SnackBar, SnackBarClosedReason> reservaUpdate() {
       precio = valoresFijos.precioReserva * double.parse(widget.nPersonas);
 
-      updateReserva(
-          widget.uid, widget.fecha, widget.nPersonas, precio.toString());
+      updateReserva(widget.uid, widget.usuario, widget.fecha, widget.nPersonas,
+          precio.toString());
       navigateToReservaRead();
       return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(

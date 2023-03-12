@@ -36,8 +36,9 @@ Future<void> addReserva(
 
 //actualizar
 Future<void> updateReserva(
-    String uid, String fecha, String nPersonas, String precio) async {
+    String uid,String usuario ,String fecha, String nPersonas, String precio) async {
   await db.collection("Reserva").doc(uid).set({
+    "Usuario": usuario,
     "Fecha": fecha,
     "CantidadPersonas": nPersonas,
     "Precio": precio,
