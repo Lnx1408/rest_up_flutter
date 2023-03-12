@@ -153,6 +153,8 @@ class _ReservaReadState extends State<ReservaRead> {
                                 MaterialPageRoute(
                                     builder: (context) => ReservaUpdate(
                                           uid: snapshot.data?[index]['uid'],
+                                          usuario: snapshot.data?[index]
+                                              ['Usuario'],
                                           fecha: snapshot.data?[index]['Fecha'],
                                           nPersonas: snapshot.data?[index]
                                               ['CantidadPersonas'],
