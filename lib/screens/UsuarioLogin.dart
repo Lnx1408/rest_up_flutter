@@ -23,9 +23,12 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> validarLogin(String usuario, String password) async {
+    Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>>
+        validarLogin(String usuario, String password) async {
+      String mensaje = "";
       bool usuarioExiste = await isUser(usuario, password);
       if (usuarioExiste) {
+        mensaje = "Bienvenido $_nombreUsuario";
         List usuarioDato = await getDatoUser(_nombreUsuario);
         Navigator.push(
           context,
@@ -33,8 +36,16 @@ class _LoginState extends State<Login> {
               builder: (context) => MenuPrincipal(usuarioDatos: usuarioDato)),
         );
       } else {
-        print('Datos incorrectos');
+        mensaje = 'Datos ingresados son incorrectos';
       }
+
+      return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          mensaje,
+          style: TextStyle(color: DesignApp.colorSecundario),
+        ),
+        backgroundColor: DesignApp.colorTerciario,
+      ));
     }
 
     void salirApp() {

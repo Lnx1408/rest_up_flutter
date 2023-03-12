@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
 import 'package:rest_up_flutter/Templates/DesignApp.dart';
+import 'package:rest_up_flutter/screens/menu_restaurante_read.dart';
 import 'package:rest_up_flutter/screens/promociones.dart';
 import 'package:rest_up_flutter/screens/ubicacion_gps.dart';
 import 'UsuarioLogin.dart';
@@ -44,6 +45,13 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
     );
   }
 
+  void navigateToMenuRestauranteRead() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MenuRestauranteRead()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     datoList.usuarioActual = widget.usuarioDatos;
@@ -65,7 +73,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
             child: Column(
               children: <Widget>[
                 createCardButton(context, "Menú", DesignApp.imgMenuComidas,
-                    () => navigateToPromociones()),
+                    () => navigateToMenuRestauranteRead()),
                 createCardButton(
                     context,
                     "Promociones",
