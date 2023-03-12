@@ -26,6 +26,14 @@ class DesignApp extends MaterialApp {
   static String fondoRegistroUsuario = "assets/images/fondo_registro.png";
   static String splash = "assets/images/splash.png";
 
+  static String fondoMenuRestaurante =
+      "https://img.freepik.com/premium-photo/spice-black-stolen-plate-wooden-background_231412-18.jpg";
+  static String fondoMenuPromocion =
+      "https://learn.canva.com/wp-content/uploads/2018/05/FoodPhotographyTips24.jpg";
+
+  static String fondoMenuReserva =
+      "https://img.freepik.com/free-vector/movember-vintage-frame-design_53876-119230.jpg";
+
   //static String fondoMenuDesplegable = "https://img.freepik.com/free-vector/gradient-black-background-with-golden-textures_52683-75745.jpg?w=740&t=st=1678562299~exp=1678562899~hmac=fc4b8b0de5b31daa1048b75ef77bb2a9c118a21cb4677eae124836656eda0fb9";
   static String fondoMenuDesplegable =
       "https://img.freepik.com/free-photo/top-view-workspace-with-succulent-cup-coffee_23-2148430830.jpg?w=740&t=st=1678563471~exp=1678564071~hmac=4ac94012549acf08b005ceb48a90ba617008fc19e64bde32cc74cc39228e8f51";

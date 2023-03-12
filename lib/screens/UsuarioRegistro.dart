@@ -133,7 +133,7 @@ class _UsuarioRegistroState extends State<UsuarioRegistro> {
                     "Imagen",
                     "Ingrese un enlace de su foto de perfil",
                     false,
-                    FontAwesomeIcons.solidUser,
+                    FontAwesomeIcons.fileImage,
                     () => imagenValue(),
                   ),
                   const SizedBox(height: 16),
