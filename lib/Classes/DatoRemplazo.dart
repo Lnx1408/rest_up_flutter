@@ -8,3 +8,7 @@ class datoText {
 class datoList {
   static List usuarioActual = [];
 }
+
+class valoresFijos {
+  static const double precioReserva = 30.99;
+}

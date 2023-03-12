@@ -32,7 +32,7 @@ class DesignApp extends MaterialApp {
       "https://learn.canva.com/wp-content/uploads/2018/05/FoodPhotographyTips24.jpg";
 
   static String fondoMenuReserva =
-      "https://img.freepik.com/free-vector/movember-vintage-frame-design_53876-119230.jpg";
+      "https://img.freepik.com/free-photo/bartender-interacting-with-customers_107420-94871.jpg";
 
   //static String fondoMenuDesplegable = "https://img.freepik.com/free-vector/gradient-black-background-with-golden-textures_52683-75745.jpg?w=740&t=st=1678562299~exp=1678562899~hmac=fc4b8b0de5b31daa1048b75ef77bb2a9c118a21cb4677eae124836656eda0fb9";
   static String fondoMenuDesplegable =
@@ -45,11 +45,86 @@ class DesignApp extends MaterialApp {
   static String imgMenuReservas =
       'assets/images/menu_principal/img_btn_reservas_light.png';
 
+  static String tagReserva =
+      "https://img.freepik.com/fotos-gratis/mesa-de-jantar-reservada_53876-94937.jpg";
+
   static TextField crearTextField(nombreCampo, hintTexto, bool isPassword,
       IconData icono, Function() myFuncion) {
     return TextField(
       cursorColor: DesignApp.colorSecundario,
       obscureText: isPassword,
+      enableInteractiveSelection: false,
+      readOnly: false,
+      decoration: InputDecoration(
+        suffixIconColor: colorSecundario,
+        contentPadding: const EdgeInsets.all(15),
+        fillColor: const Color.fromRGBO(1, 0, 0, 0.75),
+        filled: true,
+        focusColor: DesignApp.colorPrimario,
+        hintText: hintTexto,
+        labelText: nombreCampo,
+        labelStyle: TextStyle(
+          backgroundColor: colorTransparente,
+          color: colorSecundario,
+        ),
+        suffixIcon: Icon(icono),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          gapPadding: 5,
+          borderSide: BorderSide(color: colorSecundario),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      onChanged: (String valorCampoF) {
+        datoText.middleVar = valorCampoF;
+        myFuncion();
+      },
+    );
+  }
+
+  static TextField crearTextFieldDate(
+      nombreCampo, hintTexto, IconData icono, Function() myFuncion) {
+    return TextField(
+      keyboardType: TextInputType.datetime,
+      cursorColor: DesignApp.colorSecundario,
+      enableInteractiveSelection: false,
+      readOnly: false,
+      decoration: InputDecoration(
+        suffixIconColor: colorSecundario,
+        contentPadding: const EdgeInsets.all(15),
+        fillColor: const Color.fromRGBO(1, 0, 0, 0.75),
+        filled: true,
+        focusColor: DesignApp.colorPrimario,
+        hintText: hintTexto,
+        labelText: nombreCampo,
+        labelStyle: TextStyle(
+          backgroundColor: colorTransparente,
+          color: colorSecundario,
+        ),
+        suffixIcon: Icon(icono),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          gapPadding: 5,
+          borderSide: BorderSide(color: colorSecundario),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+      onChanged: (String valorCampoF) {
+        datoText.middleVar = valorCampoF;
+        myFuncion();
+      },
+    );
+  }
+
+  static TextField crearTextFieldNumber(
+      nombreCampo, hintTexto, IconData icono, Function() myFuncion) {
+    return TextField(
+      keyboardType: TextInputType.number,
+      cursorColor: DesignApp.colorSecundario,
       enableInteractiveSelection: false,
       readOnly: false,
       decoration: InputDecoration(
