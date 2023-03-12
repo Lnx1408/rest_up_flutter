@@ -2,28 +2,34 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rest_up_flutter/screens/menu_restaurante_insert.dart';
+import 'package:rest_up_flutter/Classes/DatoRemplazo.dart';
+import 'package:rest_up_flutter/screens/reserva_insert.dart';
+import 'package:rest_up_flutter/screens/reserva_update.dart';
+import 'package:rest_up_flutter/services/services_reserva.dart';
 import '../Templates/DesignApp.dart';
-import '../services/services_menu_comida.dart';
-import 'menu_restaurante_update.dart';
 
-class MenuRestauranteRead extends StatefulWidget {
-  const MenuRestauranteRead({super.key});
+class ReservaRead extends StatefulWidget {
+  const ReservaRead({super.key});
 
   @override
-  State<MenuRestauranteRead> createState() => _MenuRestauranteReadState();
+  State<ReservaRead> createState() => _ReservaReadState();
 }
 
-class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
+class _ReservaReadState extends State<ReservaRead> {
+  String _usuario = "";
   @override
   Widget build(BuildContext context) {
+    for (var datoUsuario in datoList.usuarioActual) {
+      _usuario = datoUsuario["NombreUsuario"];
+    }
+
     return Scaffold(
-      appBar: DesignApp.appBarBasic("Lista de menún del restaurante"),
+      appBar: DesignApp.appBarBasic("Historial de reservas"),
       body: FutureBuilder(
-          future: getDatosMenuComida(),
+          future: getDatosReserva(_usuario),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return _listMenu(snapshot);
+              return _listReservas(snapshot);
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -35,8 +41,7 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
         onPressed: () async {
           await Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => const MenuRestauranteInsert()),
+            MaterialPageRoute(builder: (context) => const ReservaInsert()),
           );
           setState(() {});
         },
@@ -45,13 +50,13 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
     );
   }
 
-  ListView _listMenu(AsyncSnapshot<List<dynamic>> snapshot) {
+  ListView _listReservas(AsyncSnapshot<List<dynamic>> snapshot) {
     return ListView.builder(
       itemCount: snapshot.data?.length,
       itemBuilder: ((context, index) {
         return Dismissible(
           onDismissed: (direction) async {
-            await deleteMenuComida(snapshot.data?[index]['uid']);
+            await deleteReserva(snapshot.data?[index]['uid']);
             snapshot.data?.removeAt(index);
           },
           confirmDismiss: (direction) async {
@@ -61,7 +66,7 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
                 builder: (context) {
                   return AlertDialog(
                     title: Text(
-                        "¿Esta seguro de eliminar ${snapshot.data?[index]['Nombre']}?"),
+                        "¿Esta seguro de eliminar la reserva del día ${snapshot.data?[index]['Fecha']}?"),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -79,7 +84,7 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
-                              "Menú eliminado con éxito",
+                              "Reserva eliminada con éxito",
                               style:
                                   TextStyle(color: DesignApp.colorSecundario),
                             ),
@@ -119,15 +124,15 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
                         horizontal: 8.0,
                       ),
                       child: Image.network(
-                        snapshot.data?[index]['Imagen'],
+                        DesignApp.tagReserva,
                         fit: BoxFit.fitWidth,
                         width: MediaQuery.of(context).size.width * 0.9,
                       ),
                     ),
                     AtributoDescripcionColumna(
-                        "", snapshot.data?[index]['Nombre'], context),
-                    AtributoDescripcion("Descripcion: ",
-                        snapshot.data?[index]['Descripcion'], context),
+                        "", snapshot.data?[index]['Fecha'], context),
+                    AtributoDescripcion("Cantidad de personas: ",
+                        snapshot.data?[index]['CantidadPersonas'], context),
                     const SizedBox(
                       height: 10,
                     ),
@@ -146,14 +151,12 @@ class _MenuRestauranteReadState extends State<MenuRestauranteRead> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MenuRestauranteUpdate(
-                                        uid: snapshot.data?[index]['uid'],
-                                        nombre: snapshot.data?[index]['Nombre'],
-                                        descripcion: snapshot.data?[index]
-                                            ['Descripcion'],
-                                        precio: snapshot.data?[index]['Precio'],
-                                        imagen: snapshot.data?[index]
-                                            ['Imagen'])),
+                                    builder: (context) => ReservaUpdate(
+                                          uid: snapshot.data?[index]['uid'],
+                                          fecha: snapshot.data?[index]['Fecha'],
+                                          nPersonas: snapshot.data?[index]
+                                              ['CantidadPersonas'],
+                                        )),
                               );
                             },
                             icon: Icon(
