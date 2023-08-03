@@ -119,11 +119,11 @@ class _ReservaUpdateState extends State<ReservaUpdate> {
               Container(
                 padding: const EdgeInsets.all(10.0),
                 color: const Color.fromARGB(200, 0, 0, 0),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const Text(
+                    Text(
                       "CONSIDERACIONES",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -135,7 +135,7 @@ class _ReservaUpdateState extends State<ReservaUpdate> {
               Container(
                 padding: const EdgeInsets.all(10),
                 color: const Color.fromARGB(200, 0, 0, 0),
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.max,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [

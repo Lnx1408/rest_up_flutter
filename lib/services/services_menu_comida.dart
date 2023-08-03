@@ -22,28 +22,49 @@ Future<List> getDatosMenuComida() async {
 }
 
 //guardar en base de datos
-Future<void> addMenuComida(String nombreComida, String descripcion,
+Future<String> addMenuComida(String nombreComida, String descripcion,
     String precio, String imagen) async {
-  await db.collection("MenuComida").add({
-    "Nombre": nombreComida,
-    "Descripcion": descripcion,
-    "Precio": precio,
-    "Imagen": imagen
-  });
+  String result = "";
+  try {
+    await db.collection("MenuComida").add({
+      "Nombre": nombreComida,
+      "Descripcion": descripcion,
+      "Precio": precio,
+      "Imagen": imagen
+    });
+    result = "Registro exitoso";
+  } catch (e) {
+    result = "Error, no se realizó el registro";
+  }
+  return result;
 }
 
 //actualizar
-Future<void> updateMenuComida(String uid, String nombreComida,
+Future<String> updateMenuComida(String uid, String nombreComida,
     String descripcion, String precio, String imagen) async {
-  await db.collection("MenuComida").doc(uid).set({
-    "Nombre": nombreComida,
-    "Descripcion": descripcion,
-    "Precio": precio,
-    "Imagen": imagen,
-  });
+  String result = "";
+  try {
+    await db.collection("MenuComida").doc(uid).set({
+      "Nombre": nombreComida,
+      "Descripcion": descripcion,
+      "Precio": precio,
+      "Imagen": imagen,
+    });
+    result = "Registro modificado con éxito";
+  } catch (e) {
+    result = "Error, no se pudo modicar el registro";
+  }
+  return result;
 }
 
 //eliminar desde firebase
-Future<void> deleteMenuComida(String id) async {
-  await db.collection("MenuComida").doc(id).delete();
+Future<String> deleteMenuComida(String id) async {
+  String result = "";
+  try {
+    await db.collection("MenuComida").doc(id).delete();
+    result = "Registro eliminado con éxito";
+  } catch (e) {
+    result = "Error, no se pudo eliminar el registro";
+  }
+  return result;
 }
